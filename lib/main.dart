@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:grocerie_app/constants/app_theme.dart';
-import 'package:grocerie_app/views/splash_screen.dart';
+import 'package:grocerie_app/views/boarding_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -14,7 +14,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Groceerie Demooo',
-      home: SplashScreen(),
+      home: BoardingScreen(),
       theme: AppTheme.lightTheme,
     );
   }

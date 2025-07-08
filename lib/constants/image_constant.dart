@@ -3,4 +3,5 @@ class ImageConstant {
   static String splashlogo = "$imagePath/splash_logo.png";
   static String boardingbg = "$imagePath/boarding_bg.png";
   static String carroticon = "$imagePath/carrot_icon.png";
+  static String signinimg = "$imagePath/signin_img.png";
 }

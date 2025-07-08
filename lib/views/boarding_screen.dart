@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:grocerie_app/constants/image_constant.dart';
-import 'package:grocerie_app/views/signup/Sign_up.dart';
+import 'package:grocerie_app/views/sign_in.dart';
+import 'package:grocerie_app/widgets/custom_button.dart';
 
 class BoardingScreen extends StatelessWidget {
   const BoardingScreen({super.key});
@@ -8,7 +9,7 @@ class BoardingScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Stack(children: [_buildLogo, _buildContent(context)]),
+      body: Stack(children: [_buildLogo(context), _buildContent(context)]),
     );
   }
 }
@@ -19,25 +20,35 @@ Widget _buildContent(BuildContext context) => Positioned(
     height: MediaQuery.of(context).size.height / 2,
     width: MediaQuery.of(context).size.width,
     child: Column(
-      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Image.asset(ImageConstant.carroticon),
+        // SizedBox(height: 40),
+        Image.asset(ImageConstant.carroticon, height: 56, width: 48),
+        SizedBox(height: 20),
         _buildTitle(context),
+        // SizedBox(height: 4),
         _buildSubTitle(context),
-        _buildGetStarted(context),
+        SizedBox(height: 40),
+        CustomButton(() {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => SignIn()),
+          );
+        }),
       ],
     ),
   ),
 );
 
-Widget get _buildLogo => SizedBox(
-  height: double.infinity,
-  width: double.infinity,
+Widget _buildLogo(BuildContext context) => SizedBox(
+  height: MediaQuery.of(context).size.height,
+  width: MediaQuery.of(context).size.width,
   child: Image.asset(ImageConstant.boardingbg, fit: BoxFit.cover),
 );
 
 Widget _buildTitle(BuildContext context) => SizedBox(
-  width: 270,
+  width: 253,
+
   child: Text(
     "Welcome  to our store",
     style: Theme.of(
@@ -55,26 +66,4 @@ Widget _buildSubTitle(BuildContext context) => Text(
     fontFamily: "Gilroy",
   ),
   textAlign: TextAlign.center,
-);
-
-Widget _buildGetStarted(BuildContext context) => Container(
-  width: double.infinity,
-  height: 60,
-  margin: EdgeInsets.symmetric(horizontal: 40),
-  child: ElevatedButton(
-    onPressed: () {
-      Navigator.push(
-        context,
-        MaterialPageRoute(builder: (context) => SignUp()),
-      );
-    },
-    child: Text(
-      "Get Started",
-      style: Theme.of(context).textTheme.titleLarge?.copyWith(
-        color: Colors.white,
-        fontSize: 18,
-        fontWeight: FontWeight.w600,
-      ),
-    ),
-  ),
 );
