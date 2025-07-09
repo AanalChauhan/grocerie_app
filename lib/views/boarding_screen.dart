@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:grocerie_app/constants/image_constant.dart';
 import 'package:grocerie_app/views/sign_in.dart';
-import 'package:grocerie_app/widgets/custom_button.dart';
+import 'package:grocerie_app/widgets/styled_button.dart';
 
 class BoardingScreen extends StatelessWidget {
   const BoardingScreen({super.key});
@@ -29,12 +29,12 @@ Widget _buildContent(BuildContext context) => Positioned(
         // SizedBox(height: 4),
         _buildSubTitle(context),
         SizedBox(height: 40),
-        CustomButton(() {
+        StyledButton(() {
           Navigator.push(
             context,
             MaterialPageRoute(builder: (context) => SignIn()),
           );
-        }),
+        }, "Get Started"),
       ],
     ),
   ),

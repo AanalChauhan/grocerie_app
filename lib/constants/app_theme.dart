@@ -22,10 +22,22 @@ class AppTheme {
         fontWeight: FontWeight.w600,
         fontFamily: "Gilroy",
       ),
+      bodyLarge: TextStyle(
+        fontSize: 18,
+        fontWeight: FontWeight.w400,
+        fontFamily: "Gilroy",
+        color: AppColors.textsecondary,
+      ),
       bodyMedium: TextStyle(
         fontSize: 16,
         color: AppColors.subtext,
         fontWeight: FontWeight.w600,
+      ),
+      bodySmall: TextStyle(
+        fontSize: 14,
+        color: AppColors.smalltext,
+        fontWeight: FontWeight.w600,
+        fontFamily: "Gilroy",
       ),
     ),
   );

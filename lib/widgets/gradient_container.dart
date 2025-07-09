@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class CustomContainer extends StatelessWidget {
-  const CustomContainer({super.key});
+class GradientContainer extends StatelessWidget {
+  const GradientContainer({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -12,10 +12,11 @@ class CustomContainer extends StatelessWidget {
           decoration: BoxDecoration(
             gradient: LinearGradient(
               colors: [
-                const Color.fromARGB(255, 96, 201, 151),
-                const Color.fromARGB(255, 235, 235, 133),
-                const Color.fromARGB(255, 236, 172, 153),
-                const Color.fromARGB(255, 200, 176, 241),
+                const Color.fromARGB(255, 239, 161, 137),
+                const Color.fromARGB(255, 92, 205, 150),
+                const Color.fromARGB(255, 240, 240, 131),
+                const Color.fromARGB(255, 239, 161, 137),
+                const Color.fromARGB(255, 192, 166, 236),
               ],
               begin: Alignment.topLeft,
               end: Alignment.topRight,
@@ -25,30 +26,32 @@ class CustomContainer extends StatelessWidget {
         Column(
           children: [
             Container(
-              height: 150,
+              height: 200,
               width: double.infinity,
               decoration: BoxDecoration(
                 gradient: LinearGradient(
                   colors: [
-                    const Color.fromARGB(107, 255, 255, 255),
-                    const Color.fromARGB(224, 255, 255, 255),
-                    const Color.fromARGB(243, 255, 255, 255),
+                    const Color.fromARGB(198, 255, 255, 255),
+                    const Color.fromARGB(201, 255, 255, 255),
+                    const Color.fromARGB(240, 255, 255, 255),
                   ],
                   begin: Alignment.topCenter,
                   end: Alignment.bottomCenter,
                 ),
               ),
             ),
-            Expanded(child: Container(color: Colors.white)),
+            Expanded(
+              child: Container(color: const Color.fromARGB(236, 255, 255, 255)),
+            ),
             Container(
-              height: 150,
+              height: 200,
               width: double.infinity,
               decoration: BoxDecoration(
                 gradient: LinearGradient(
                   colors: [
-                    const Color.fromARGB(107, 255, 255, 255),
-                    const Color.fromARGB(224, 255, 255, 255),
-                    const Color.fromARGB(243, 255, 255, 255),
+                    const Color.fromARGB(198, 255, 255, 255),
+                    const Color.fromARGB(201, 255, 255, 255),
+                    const Color.fromARGB(240, 255, 255, 255),
                   ],
                   begin: Alignment.bottomCenter,
                   end: Alignment.topCenter,

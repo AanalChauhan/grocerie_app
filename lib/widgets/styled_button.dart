@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 
-class CustomButton extends StatelessWidget {
-  const CustomButton(this.onTap, {super.key});
+class StyledButton extends StatelessWidget {
+  const StyledButton(this.onTap, this.btntext, {super.key});
 
   final void Function() onTap;
+  final String btntext;
 
   @override
   Widget build(BuildContext context) {
@@ -14,7 +15,7 @@ class CustomButton extends StatelessWidget {
       child: ElevatedButton(
         onPressed: onTap,
         child: Text(
-          "Get Started",
+          btntext,
           style: Theme.of(context).textTheme.titleLarge?.copyWith(
             color: Colors.white,
             fontSize: 18,
