@@ -11,7 +11,7 @@ class StyledButton extends StatelessWidget {
     return Container(
       width: double.infinity,
       height: 67,
-      margin: EdgeInsets.symmetric(horizontal: 30.5),
+      // margin: EdgeInsets.symmetric(horizontal: 30.5),
       child: ElevatedButton(
         onPressed: onTap,
         child: Text(

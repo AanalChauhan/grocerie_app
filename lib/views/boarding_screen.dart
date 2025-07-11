@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:grocerie_app/constants/image_constant.dart';
-import 'package:grocerie_app/views/sign_in.dart';
+import 'package:grocerie_app/views/preview_screen.dart';
 import 'package:grocerie_app/widgets/styled_button.dart';
 
 class BoardingScreen extends StatelessWidget {
@@ -29,12 +29,15 @@ Widget _buildContent(BuildContext context) => Positioned(
         // SizedBox(height: 4),
         _buildSubTitle(context),
         SizedBox(height: 40),
-        StyledButton(() {
-          Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) => SignIn()),
-          );
-        }, "Get Started"),
+        Container(
+          margin: EdgeInsets.all(35),
+          child: StyledButton(() {
+            Navigator.pushReplacement(
+              context,
+              MaterialPageRoute(builder: (context) => SignIn()),
+            );
+          }, "Get Started"),
+        ),
       ],
     ),
   ),
@@ -46,16 +49,12 @@ Widget _buildLogo(BuildContext context) => SizedBox(
   child: Image.asset(ImageConstant.boardingbg, fit: BoxFit.cover),
 );
 
-Widget _buildTitle(BuildContext context) => SizedBox(
-  width: 253,
-
-  child: Text(
-    "Welcome  to our store",
-    style: Theme.of(
-      context,
-    ).textTheme.titleLarge?.copyWith(color: Colors.white, fontSize: 48),
-    textAlign: TextAlign.center,
-  ),
+Widget _buildTitle(BuildContext context) => Text(
+  "Welcome \nto our store",
+  style: Theme.of(
+    context,
+  ).textTheme.titleLarge?.copyWith(color: Colors.white, fontSize: 48),
+  textAlign: TextAlign.center,
 );
 
 Widget _buildSubTitle(BuildContext context) => Text(

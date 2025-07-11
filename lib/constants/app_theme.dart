@@ -21,17 +21,21 @@ class AppTheme {
         color: AppColors.textsecondary,
         fontWeight: FontWeight.w600,
         fontFamily: "Gilroy",
+        letterSpacing: 0.5,
       ),
       bodyLarge: TextStyle(
         fontSize: 18,
         fontWeight: FontWeight.w400,
         fontFamily: "Gilroy",
         color: AppColors.textsecondary,
+        letterSpacing: 0.5,
       ),
       bodyMedium: TextStyle(
         fontSize: 16,
         color: AppColors.subtext,
-        fontWeight: FontWeight.w600,
+        fontWeight: FontWeight.w500,
+        letterSpacing: 0.5,
+        fontFamily: "Gilroy",
       ),
       bodySmall: TextStyle(
         fontSize: 14,
