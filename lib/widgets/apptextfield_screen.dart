@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:grocerie_app/constants/app_colors.dart';
 
-class ApptextfieldScreen extends StatelessWidget {
+class ApptextfieldScreen extends StatefulWidget {
   final TextEditingController? controller;
   final String? hintText;
   final IconData? suffixIcon;
@@ -12,11 +12,24 @@ class ApptextfieldScreen extends StatelessWidget {
     super.key,
     required this.controller,
     required this.hintText,
-    required this.obsecureText,
+    this.obsecureText=false,
     required this.keyboardType,
     this.suffixIcon,
   });
 
+  @override
+  State<ApptextfieldScreen> createState() => _ApptextfieldScreenState();
+}
+
+
+class _ApptextfieldScreenState extends State<ApptextfieldScreen> {
+late bool _obsecureText;
+  @override
+  void initState(){
+    super.initState();
+    _obsecureText = widget.obsecureText??false;
+
+  }
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -24,18 +37,30 @@ class ApptextfieldScreen extends StatelessWidget {
         border: Border(bottom: BorderSide(color: Colors.grey)),
       ),
       child: TextField(
-        controller: controller,
-        keyboardType: keyboardType,
-        obscureText: obsecureText ?? false,
+        controller: widget.controller,
+        keyboardType: widget.keyboardType,
+        obscureText: _obsecureText ,
         decoration: InputDecoration(
           enabledBorder: InputBorder.none,
           focusedBorder: InputBorder.none,
-          hintText: hintText,
+          hintText: widget.hintText,
           hintStyle: Theme.of(
             context,
-          ).textTheme.bodyLarge?.copyWith(color: AppColors.subtext),
-          suffixIcon: suffixIcon != null
-              ? Icon(suffixIcon, color: AppColors.subtext)
+          ).textTheme.bodyMedium?.copyWith(color: AppColors.subtext),
+          suffixIcon:  widget.suffixIcon != null
+              ? IconButton(
+                  onPressed: () {
+                    setState(() {
+                      _obsecureText = !_obsecureText;
+                    });
+                  },
+                  icon: Icon(
+                    _obsecureText
+                        ? Icons.visibility_off_outlined
+                        : Icons.visibility_outlined,
+                  ),
+                  color: AppColors.subtext,
+                )
               : null,
         ),
       ),

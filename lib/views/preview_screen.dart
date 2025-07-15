@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:grocerie_app/constants/image_constant.dart';
-import 'package:grocerie_app/views/login/login_screen.dart';
 import 'package:grocerie_app/views/number_screen.dart';
 import 'package:grocerie_app/views/signup/signup_screen.dart';
 import 'package:grocerie_app/views/verification_screen.dart';
@@ -55,6 +54,8 @@ class _SignInState extends State<SignIn> {
   // );
   Widget _buildcontent(BuildContext context) => SingleChildScrollView(
     child: Container(
+     
+                width: MediaQuery.of(context).size.width,
       margin: EdgeInsets.all(25),
       height: MediaQuery.of(context).size.height / 1.2,
       child: Column(
@@ -98,7 +99,7 @@ class _SignInState extends State<SignIn> {
       onPressed: () {
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => LoginScreen()),
+          MaterialPageRoute(builder: (context) => SignUp()),
         );
       },
       child: Text(

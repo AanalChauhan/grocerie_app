@@ -11,8 +11,9 @@ class AppTheme {
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ElevatedButton.styleFrom(
         backgroundColor: AppColors.primary,
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
         foregroundColor: Color(0xFFFFF9FF),
+        textStyle: TextStyle(fontWeight: FontWeight.w500,fontFamily: "Gilroy",fontSize: 18)
       ),
     ),
     textTheme: const TextTheme(

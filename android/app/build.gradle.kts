@@ -6,7 +6,7 @@ plugins {
 }
 
 android {
-    namespace = "com.example.grocerie_app"
+    namespace = "com.codexa.grocerie_app"
     compileSdk = flutter.compileSdkVersion
     ndkVersion = flutter.ndkVersion
 
@@ -34,7 +34,7 @@ android {
         release {
             // TODO: Add your own SigninScreeng config for the release build.
             // SigninScreeng with the debug keys for now, so `flutter run --release` works.
-            SigninScreengConfig = SigninScreengConfigs.getByName("debug")
+            //SigninScreengConfig = SigninScreengConfigs.getByName("debug")
         }
     }
 }

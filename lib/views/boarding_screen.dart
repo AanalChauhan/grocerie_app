@@ -28,9 +28,9 @@ Widget _buildContent(BuildContext context) => Positioned(
         _buildTitle(context),
         // SizedBox(height: 4),
         _buildSubTitle(context),
-        SizedBox(height: 40),
+        SizedBox(height: 30),
         Container(
-          margin: EdgeInsets.all(35),
+          margin: EdgeInsets.symmetric(horizontal: 25),
           child: StyledButton(() {
             Navigator.pushReplacement(
               context,

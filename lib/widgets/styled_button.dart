@@ -8,9 +8,9 @@ class StyledButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       width: double.infinity,
-      height: 67,
+      height: 60,
       // margin: EdgeInsets.symmetric(horizontal: 30.5),
       child: ElevatedButton(
         onPressed: onTap,
