@@ -15,7 +15,16 @@ subprojects {
 subprojects {
     project.evaluationDependsOn(":app")
 }
+subprojects {
+    if (project.name == "app") {
+        project.plugins.apply("com.google.gms.google-services")
+    }
+}
 
 tasks.register<Delete>("clean") {
     delete(rootProject.layout.buildDirectory)
+}
+
+plugins {
+    id("com.google.gms.google-services") version "4.4.1" apply false
 }
