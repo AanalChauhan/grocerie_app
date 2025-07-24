@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:grocerie_app/constants/app_colors.dart';
-import 'package:grocerie_app/views/location_screen.dart';
+import 'package:grocerie_app/provider/auth_provider.dart' as authProvider;
 import 'package:grocerie_app/widgets/floating_button.dart';
 import 'package:grocerie_app/widgets/gradient_container.dart';
+import 'package:provider/provider.dart';
 
 class VerificationScreen extends StatelessWidget {
-  VerificationScreen({super.key});
-  final TextEditingController passwordController = TextEditingController();
+  String verificationid;
+  VerificationScreen({super.key, required this.verificationid});
+
+  final TextEditingController otpController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +33,8 @@ class VerificationScreen extends StatelessWidget {
   }
 
   Widget _buildtextbutton(BuildContext context) => TextButton(
-    onPressed: () {},
+    onPressed: () {
+    },
     child: Text(
       "Resend Code",
       style: Theme.of(context).textTheme.bodyLarge?.copyWith(
@@ -46,11 +50,26 @@ class VerificationScreen extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         _buildtextbutton(context),
-        FloatingButton(() {
-          Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) => LocationScreen()),
-          );
+        FloatingButton(() async {
+          // Navigator.push(
+          //   context,
+          //   MaterialPageRoute(builder: (context) => LocationScreen()),
+          // );
+          // try{
+          // PhoneAuthCredential credential= await PhoneAuthProvider.credential(verificationId: widget.verificationid, smsCode: otpController.text.toString());
+          // FirebaseAuth.instance.signInWithCredential(credential).then((value){Navigator.push(context, MaterialPageRoute(builder: (context)=>BottomNavbar()));});
+          // }catch(e){return e.toString();}
+          final otp = otpController.text.trim();
+         if (otp.isNotEmpty) {
+                 await Provider.of<authProvider.AuthProvider>(context, listen: false)
+                      .verifyUser(
+                    context: context, smsCode: otp, verificationid: verificationid,
+                  );
+                } else {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(content: Text("Please enter a valid number")),
+                  );
+                }
         }),
       ],
     ),
@@ -61,7 +80,7 @@ class VerificationScreen extends StatelessWidget {
       border: Border(bottom: BorderSide(color: Colors.grey)),
     ),
     child: TextField(
-      controller: passwordController,
+      controller: otpController,
       keyboardType: TextInputType.number,
       decoration: InputDecoration(
         enabledBorder: InputBorder.none,

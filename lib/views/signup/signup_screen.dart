@@ -2,18 +2,30 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:grocerie_app/constants/app_colors.dart';
 import 'package:grocerie_app/constants/image_constant.dart';
+import 'package:grocerie_app/constants/textfield_validators.dart';
+import 'package:grocerie_app/provider/auth_provider.dart';
 import 'package:grocerie_app/views/login/login_screen.dart';
 import 'package:grocerie_app/widgets/apptextfield_screen.dart';
 import 'package:grocerie_app/widgets/gradient_container.dart';
 import 'package:grocerie_app/widgets/styled_button.dart';
+import 'package:provider/provider.dart';
 
-class SignUp extends StatelessWidget {
-  SignUp({super.key});
+class SignUp extends StatefulWidget {
+const SignUp({super.key});
 
+  @override
+  State<SignUp> createState() => _SignUpState();
+}
+
+class _SignUpState extends State<SignUp> {
+  bool  isLoading= false;
   final TextEditingController emailController = TextEditingController();
+
   final TextEditingController passwordController = TextEditingController();
+
   final TextEditingController nameController = TextEditingController();
 
+//   bool isStrongPassword(String password) {
   @override
   Widget build(BuildContext context) {
     return Stack(
@@ -58,13 +70,14 @@ class SignUp extends StatelessWidget {
             ),
           ),
         ),
+        if(isLoading)Center(child: Container( height: 50,width: 50,color: Colors.white,child: CircularProgressIndicator(),))
       ],
     );
   }
 
   Widget _signuptext(BuildContext context) =>
       Text("Sign up", style: Theme.of(context).textTheme.titleLarge);
-      
+
   Widget _subtext(BuildContext context) => Text(
     "Enter your credentials to continue",
     style: Theme.of(
@@ -162,7 +175,45 @@ class SignUp extends StatelessWidget {
   );
 
   Widget _buildButtonSignup(BuildContext context) =>
-      StyledButton(() {}, "Sign Up");
+      StyledButton(() async {
+        setState(() {
+          isLoading=true;
+        });
+    final authProvider = Provider.of<AuthProvider>(context, listen: false);
+
+    final name = nameController.text.trim();
+    final email = emailController.text.trim();
+    final password = passwordController.text.trim();
+
+    
+
+   
+  final nameError = TextfieldValidators.nameValidator(name);
+  final emailError = TextfieldValidators.emailValidator(email);
+  final passwordError = TextfieldValidators.passwordValidator(password);
+  setState(() {
+    isLoading=false;
+  });
+
+  if (nameError != null || emailError != null || passwordError != null) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(content: Text(nameError ?? emailError ?? passwordError!)),
+    );
+    return;
+  }
+ final result = await authProvider.signUp(name, email, password);
+    
+    if (result == null) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text("Signup successful")),
+      );
+      Navigator.push(context, MaterialPageRoute(builder: (_) => const LoginScreen()));
+    } else {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text(result)),
+      );
+    }
+  }, "Sign Up");
 
   Widget _buildLoginText(BuildContext context) => Center(
     child: RichText(

@@ -2,11 +2,13 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:grocerie_app/constants/app_colors.dart';
 import 'package:grocerie_app/constants/image_constant.dart';
+import 'package:grocerie_app/provider/auth_provider.dart';
 import 'package:grocerie_app/views/signup/signup_screen.dart';
 import 'package:grocerie_app/widgets/Bottom_navbar.dart';
 import 'package:grocerie_app/widgets/apptextfield_screen.dart';
 import 'package:grocerie_app/widgets/gradient_container.dart';
 import 'package:grocerie_app/widgets/styled_button.dart';
+import 'package:provider/provider.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -16,6 +18,7 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
+  bool isLoading=false;
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
 
@@ -60,6 +63,7 @@ class _LoginScreenState extends State<LoginScreen> {
             ),
           ),
         ),
+        if(isLoading)Center(child: Container( height: 50,width: 50,color: Colors.white,child: CircularProgressIndicator(),))
       ],
     );
   }
@@ -119,11 +123,31 @@ class _LoginScreenState extends State<LoginScreen> {
     ),
   );
 
-  Widget _buildLoginButton(BuildContext context) => StyledButton(() {
-    Navigator.push(
-      context,
-      MaterialPageRoute(builder: (context) => BottomNavbar()),
-    );
+  Widget _buildLoginButton(BuildContext context) => StyledButton(() async {
+    setState(() {
+      isLoading=true;
+    });
+    final authProvider = Provider.of<AuthProvider>(context, listen: false);
+
+    final email = emailController.text.trim();
+    final password = passwordController.text.trim();
+
+    final result = await authProvider.login(email, password);
+    setState(() {
+      isLoading=false;
+    });
+    
+
+    if (result == null) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text("Login successful")),
+      );
+      Navigator.push(context, MaterialPageRoute(builder: (_) => BottomNavbar()));
+    } else {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text(result)),
+      );
+    }
   }, "Log In");
 
   Widget _buildSignupText(BuildContext context) => Center(

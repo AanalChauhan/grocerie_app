@@ -12,7 +12,20 @@
           "package_name": "com.codexa.grocerie_app"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "839534737571-6nllbvk3o8j2drrfsdvbhuu0vp350qjo.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.codexa.grocerie_app",
+            "certificate_hash": "f168c0611f9bbb8735fef0a97825631e704abea7"
+          }
+        },
+        {
+          "client_id": "839534737571-ai9dbe31824vui2pp0o0cpn20i0nj8om.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyBnlffBBIORAV68rGgUr5Up745bm5v7Q_E"
@@ -20,7 +33,12 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "839534737571-ai9dbe31824vui2pp0o0cpn20i0nj8om.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         }
       }
     }

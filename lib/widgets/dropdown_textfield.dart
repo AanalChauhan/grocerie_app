@@ -1,17 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:grocerie_app/constants/image_constant.dart';
 
-class DropdownTextfield extends StatefulWidget {
-  const DropdownTextfield({super.key});
+class DropdownTextfield extends StatelessWidget {
+  const DropdownTextfield({super.key,required this.controller,required this.update, required this.selectedCountryName, required this.selectedCountryCode});
+  final TextEditingController controller;
+  final void Function(String?)update;
+  final String selectedCountryName;
+  final String selectedCountryCode;
 
   @override
-  State<DropdownTextfield> createState() => _DropdownTextfieldState();
-}
-
-class _DropdownTextfieldState extends State<DropdownTextfield> {
-  TextEditingController numberController = TextEditingController();
-
-  String? selectedCountryName = "India";
+  Widget build(BuildContext context) {
+     
   final List<Map<String, Map<String, String>>> countryList = [
     {
       "India": {"code": "+91", "flag": ImageConstant.indiaimg},
@@ -36,8 +35,6 @@ class _DropdownTextfieldState extends State<DropdownTextfield> {
     return {"code": "+91", "flag": ImageConstant.indiaimg};
   }
 
-  @override
-  Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
         border: Border(bottom: BorderSide(color: Colors.grey)),
@@ -58,11 +55,7 @@ class _DropdownTextfieldState extends State<DropdownTextfield> {
                 child: Image.asset(data["flag"]!, width: 32, height: 24),
               );
             }).toList(),
-            onChanged: (value) {
-              setState(() {
-                selectedCountryName = value;
-              });
-            },
+            onChanged: update,
             selectedItemBuilder: (context) {
               return countryList.map((entry) {
                 final name = entry.keys.first;
@@ -75,14 +68,15 @@ class _DropdownTextfieldState extends State<DropdownTextfield> {
           ),
           SizedBox(width: 10),
           Text(
-            _getCountryData(selectedCountryName!)["code"]!,
+            selectedCountryCode!,
+            // _getCountryData(selectedCountryName!)["code"]!,
             style: Theme.of(context).textTheme.bodyLarge,
           ),
 
           SizedBox(width: 10),
           Flexible(
             child: TextField(
-              controller: numberController,
+              controller: controller,
               keyboardType: TextInputType.phone,
               decoration: InputDecoration(
                 enabledBorder: InputBorder.none,

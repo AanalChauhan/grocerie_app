@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:grocerie_app/constants/app_colors.dart';
 import 'package:grocerie_app/constants/image_constant.dart';
 import 'package:grocerie_app/views/location_input.dart';
 import 'package:grocerie_app/widgets/gradient_container.dart';

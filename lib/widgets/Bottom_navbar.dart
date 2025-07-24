@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:grocerie_app/constants/app_colors.dart';
 import 'package:grocerie_app/views/home_screen.dart';
 import 'package:grocerie_app/views/login/login_screen.dart';
+import 'package:grocerie_app/views/profile_screen.dart';
 
 class BottomNavbar extends StatefulWidget {
   //  final int currentIndex;
@@ -21,7 +22,7 @@ class _BottomNavbarState extends State<BottomNavbar> {
     LoginScreen(),
     Center(child: Text("Cart")),
     Center(child: Text("Favourite")),
-    Center(child: Text("Account")),
+    ProfileScreen()
   ];
 
   void _onTabTapped(int index) {

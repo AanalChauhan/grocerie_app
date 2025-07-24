@@ -34,7 +34,7 @@ Widget _buildContent(BuildContext context) => Positioned(
           child: StyledButton(() {
             Navigator.pushReplacement(
               context,
-              MaterialPageRoute(builder: (context) => SignIn()),
+              MaterialPageRoute(builder: (context) => PreviewScreen()),
             );
           }, "Get Started"),
         ),
