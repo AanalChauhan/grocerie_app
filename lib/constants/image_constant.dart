@@ -14,4 +14,5 @@ class ImageConstant {
   static String mapimg = "$imagePath/map_img.png";
   static String signinbgimg = "$imagePath/signin_bg.png";
   static String carrotimg = "$imagePath/carrot_img.png";
+  static String profileimg = "$imagePath/profileimg.png";
 }

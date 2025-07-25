@@ -243,11 +243,24 @@ class _PreviewScreenState extends State<PreviewScreen> {
     width: double.infinity,
     height: 67,
     child: ElevatedButton(
-      onPressed: () {
-        Navigator.push(
-          context,
-          MaterialPageRoute(builder: (context) => NumberScreen()),
-        );
+      onPressed: () async {
+       setState(() {
+         isLoading=true;
+       });
+       final authProvider = Provider.of<AuthProvider>(context, listen: false);
+       final result = await authProvider.signInWithFacebook();
+       setState(() {
+         isLoading=false;
+       });
+      if(result=="success"){
+        ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text("Login successful")),
+      ); 
+      Navigator.push(context, MaterialPageRoute(builder: (context)=>BottomNavbar()));
+      }else{
+           ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text("Not able to signin with facebook")),
+      );}
       },
       style: ElevatedButton.styleFrom(backgroundColor: Color(0xFF4A66AC)),
       child: Row(

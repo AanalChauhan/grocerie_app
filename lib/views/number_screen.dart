@@ -86,12 +86,9 @@ class _NumberScreenState extends State<NumberScreen> {
               ),
             ),
             SizedBox(height: 10),
-           DropdownTextfield(controller: numberController, update: (String? value) {
-              setState(() {
-                selectedCountryName = value!;
-                selectedCountryCode = _getCountryData(selectedCountryName)["code"]!;
-              });
-             }, selectedCountryName: selectedCountryName, selectedCountryCode: selectedCountryCode,)
+           DropdownTextfield(controller: numberController, update: (country, code) {
+             print((country ?? "") + (code ?? ""));
+           }, )
           ],
         ),
       ),

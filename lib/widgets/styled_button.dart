@@ -25,4 +25,6 @@ class StyledButton extends StatelessWidget {
       ),
     );
   }
+
+  static icon(Null Function() param0, String s) {}
 }
